@@ -1,5 +1,6 @@
 import { createGlobalStyle } from 'styled-components';
 
+/*
 export function fontFace(
   name: string,
   src: string,
@@ -27,7 +28,7 @@ export function fontFace(
           font-weight: ${fontWeight};
       }
   `;
-}
+}*/
 
 export const GlobalFonts = createGlobalStyle`
 

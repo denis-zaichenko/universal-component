@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useSelectContext } from '../select.context';
+import { selectItemToString } from '../select.utils';
 
 import { ISelectItem } from '../select.typings';
 
@@ -12,16 +13,18 @@ export interface ISelectPlaceholderProps extends ITextStyled {
   selectItem?: ISelectItem;
 }
 
-const PlaceholderStyled = styled(Theme.Paragraph)``;
+const PlaceholderStyled = styled(Theme.Text)``;
 
 export const Placeholder = (props: ISelectPlaceholderProps) => {
   const { placeholder, selectItem, ...textProps } = props;
-  const item: ISelectItem = selectItem ?? useSelectContext().selectItem;
-  const { value, label } = item;
+  const select: ISelectItem | ISelectItem[] =
+    selectItem ?? useSelectContext().selectItem;
 
   return (
     <PlaceholderStyled {...textProps}>
-      {label || value || placeholder || ' '}
+      {Array.isArray(select)
+        ? select.map((item) => selectItemToString(item, placeholder)).join(', ')
+        : selectItemToString(select, placeholder)}
     </PlaceholderStyled>
   );
 };

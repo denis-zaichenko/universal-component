@@ -1,22 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import styled from 'styled-components';
 
 import { useTabContext } from '../tabs-context';
-import { useCallOneTime } from 'services/hooks';
 
 import { IComponent } from 'typings/component';
 
-import { TabStyled, ITabStyled } from '../tabs.styles';
+interface ITabProps extends IComponent {}
 
-interface ITabProps extends IComponent, ITabStyled {}
+const TabStyled = styled.div<{ isActive: boolean }>``;
 
 export const Tab = (props: ITabProps) => {
   const { children, className } = props;
   const [index, setIndex] = useState<number>(0);
   const { generateTabIndex, setIndexTab, indexTab } = useTabContext();
 
-  useCallOneTime(() => setIndex(generateTabIndex()));
+  useEffect(() => setIndex(generateTabIndex()), []);
 
   const isActive = index === indexTab;
+
   const select = () => setIndexTab(index);
 
   return (

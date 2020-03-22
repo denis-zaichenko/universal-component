@@ -1,7 +1,15 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { Item, CheckedItem, Menu, Placeholder } from './components';
+import {
+  Item,
+  Header,
+  Menu,
+  Placeholder,
+  HeaderText,
+  TextItem,
+  ItemIcon,
+} from './components';
 import { SelectProvider } from './select.context';
 
 import { useOutsideCall } from 'hooks';
@@ -13,8 +21,8 @@ import { ISelectItem } from './select.typings';
 import { Theme, IFlexPresetStyled } from 'themes/styles';
 
 export interface ISelectProps extends IComponent, IFlexPresetStyled {
-  selectItem: ISelectItem;
-  onSelect: (data: ISelectItem) => void;
+  selectItem: ISelectItem[] | ISelectItem;
+  onSelect: (data: ISelectItem[] | ISelectItem) => void;
 }
 
 const SelectStyled = styled(Theme.FlexColumn)`
@@ -41,7 +49,12 @@ export function Select(props: ISelectProps) {
   );
 }
 
-Select.Item = Item;
-Select.CheckedItem = CheckedItem;
 Select.Menu = Menu;
 Select.Placeholder = Placeholder;
+
+Select.Item = Item;
+Select.ItemIcon = ItemIcon;
+Select.TextItem = TextItem;
+
+Select.Header = Header;
+Select.HeaderText = HeaderText;

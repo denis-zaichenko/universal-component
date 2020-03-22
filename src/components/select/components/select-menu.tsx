@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useSelectContext } from '../select.context';
+import { createItemList, TSelectItem } from '../select.utils';
 
 import { IComponent } from 'typings/component';
 
@@ -9,6 +10,7 @@ import { Theme, IFlexPresetStyled } from 'themes/styles';
 
 export interface ISelectMenuProps extends IComponent, IFlexPresetStyled {
   topGap?: string;
+  itemList?: TSelectItem[];
 }
 
 interface IMenuStyled {
@@ -24,11 +26,12 @@ const MenuStyled = styled(Theme.FlexColumn)<IMenuStyled>`
 `;
 
 export const Menu = (props: ISelectMenuProps) => {
-  const { children, className, topGap, ...flex } = props;
+  const { children, className, topGap, itemList, ...flex } = props;
   const { isOpen } = useSelectContext();
 
   return (
     <MenuStyled isOpen={isOpen} topGap={topGap} className={className} {...flex}>
+      {itemList && createItemList(itemList)}
       {children}
     </MenuStyled>
   );

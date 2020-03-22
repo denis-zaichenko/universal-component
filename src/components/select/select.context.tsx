@@ -4,17 +4,17 @@ import { ISelectItem } from './select.typings';
 import { ISelectState } from './select.state';
 
 interface ISelectContext extends ISelectState {
-  selectItem: ISelectItem;
+  selectItem: ISelectItem[] | ISelectItem;
 
-  onSelect: (data: ISelectItem) => void;
+  onSelect: (data: ISelectItem[] | ISelectItem) => void;
 }
 
 const SelectContext = createContext<ISelectContext>({
   isOpen: false,
+  selectItem: { value: '' },
   onSelect: () => {
     return;
   },
-  selectItem: { value: '' },
   setOpen: () => {
     return;
   },
