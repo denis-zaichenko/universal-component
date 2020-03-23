@@ -1,30 +1,27 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { useSelectContext } from '../select.context';
 import { selectItemToString } from '../select.utils';
 
 import { ISelectItem } from '../select.typings';
+import { IComponent } from 'typings/component';
 
 import { Theme, ITextStyled } from 'themes/styles';
 
-export interface ISelectPlaceholderProps extends ITextStyled {
+export interface ISelectPlaceholderProps extends IComponent {
+  selectItem: ISelectItem;
   placeholder?: string;
-  selectItem?: ISelectItem;
+  textStyled?: ITextStyled;
 }
 
 const PlaceholderStyled = styled(Theme.Text)``;
 
 export const Placeholder = (props: ISelectPlaceholderProps) => {
-  const { placeholder, selectItem, ...textProps } = props;
-  const select: ISelectItem | ISelectItem[] =
-    selectItem ?? useSelectContext().selectItem;
+  const { placeholder, selectItem, textStyled } = props;
 
   return (
-    <PlaceholderStyled {...textProps}>
-      {Array.isArray(select)
-        ? select.map((item) => selectItemToString(item, placeholder)).join(', ')
-        : selectItemToString(select, placeholder)}
+    <PlaceholderStyled {...textStyled}>
+      {selectItemToString(selectItem, placeholder)}
     </PlaceholderStyled>
   );
 };

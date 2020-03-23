@@ -8,18 +8,19 @@ import { ITextStyled } from 'themes/styles';
 
 const TextItemStyled = styled(Item)``;
 
-type TItemExtends = ISelectItemProps & ITextStyled;
-export interface ISelectTextItemProps extends TItemExtends {}
+export interface ISelectTextItemProps extends ISelectItemProps {
+  textStyled?: ITextStyled;
+}
 
 export const isTextItem = (props: any): props is ISelectTextItemProps =>
   props.value;
 
 export const TextItem = (props: ISelectTextItemProps) => {
-  const { value, children, className, ...textStyled } = props;
+  const { value, children, className, textStyled } = props;
 
   return (
     <TextItemStyled value={value} className={className}>
-      <Placeholder selectItem={value} {...textStyled} />
+      <Placeholder selectItem={value} textStyled={textStyled} />
       {children}
     </TextItemStyled>
   );

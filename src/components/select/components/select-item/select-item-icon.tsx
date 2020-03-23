@@ -2,15 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { Item, ISelectItemProps } from './select-item';
-import { Icon, TIconNames } from 'components/icons';
+import { Icon, IIconProps } from 'components/icons';
 import { Placeholder } from '../select-placeholder';
 
 import { ITextStyled } from 'themes/styles';
 
-type TItem = ISelectItemProps & ITextStyled;
-export interface ISelectItemWithIconProps extends TItem {
-  iconSize?: string;
-  icon: TIconNames;
+export interface ISelectItemWithIconProps extends ISelectItemProps {
+  textStyled?: ITextStyled;
+  iconParameters: IIconProps;
 }
 
 const ItemStyled = styled(Item)<{ size?: string }>`
@@ -29,12 +28,12 @@ export const isIconItem = (props: any): props is ISelectItemWithIconProps =>
   props.icon && props.value;
 
 export const ItemIcon = (props: ISelectItemWithIconProps) => {
-  const { value, iconSize, children, className, icon, ...styled } = props;
+  const { value, children, className, textStyled, iconParameters } = props;
 
   return (
     <ItemStyled className={className} value={value}>
-      <IconStyled type={icon} size={iconSize} />
-      <Placeholder selectItem={value} {...styled} />
+      <IconStyled size={iconParameters?.size} {...iconParameters} />
+      <Placeholder selectItem={value} {...textStyled} />
       {children}
     </ItemStyled>
   );

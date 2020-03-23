@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Select, ISelectItem } from 'components/select';
 
 export const App = () => {
-  const [state, setState] = useState<ISelectItem>({ value: '' });
+  const [state, setState] = useState<ISelectItem[]>([]);
   const set = (item: ISelectItem[] | ISelectItem) => setState(item as any);
   return (
     <>

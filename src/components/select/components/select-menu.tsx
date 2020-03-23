@@ -6,9 +6,9 @@ import { createItemList, TSelectItem } from '../select.utils';
 
 import { IComponent } from 'typings/component';
 
-import { Theme, IFlexPresetStyled } from 'themes/styles';
+import { Theme } from 'themes/styles';
 
-export interface ISelectMenuProps extends IComponent, IFlexPresetStyled {
+export interface ISelectMenuProps extends IComponent {
   topGap?: string;
   itemList?: TSelectItem[];
 }
@@ -18,19 +18,20 @@ interface IMenuStyled {
   isOpen: boolean;
 }
 
-const MenuStyled = styled(Theme.FlexColumn)<IMenuStyled>`
+const MenuStyled = styled(Theme.Wrapper)<IMenuStyled>`
   position: absolute;
   top: 100%;
-  display: ${(p) => (p.isOpen ? 'flex' : 'none')};
+  min-width: 100%;
+  display: ${(p) => (p.isOpen ? 'block' : 'none')};
   ${(p) => p.topGap && `margin-top: ${p.topGap};`}
 `;
 
 export const Menu = (props: ISelectMenuProps) => {
-  const { children, className, topGap, itemList, ...flex } = props;
+  const { children, className, topGap, itemList } = props;
   const { isOpen } = useSelectContext();
 
   return (
-    <MenuStyled isOpen={isOpen} topGap={topGap} className={className} {...flex}>
+    <MenuStyled isOpen={isOpen} topGap={topGap} className={className}>
       {itemList && createItemList(itemList)}
       {children}
     </MenuStyled>

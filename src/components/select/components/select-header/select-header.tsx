@@ -5,20 +5,24 @@ import { useSelectContext } from '../../select.context';
 
 import { IComponent } from 'typings/component';
 
-export interface ISelectHederProps extends IComponent {}
+import { Theme, IFlexStyled } from 'themes/styles';
 
-const HeaderStyled = styled.div`
+export interface ISelectHederProps extends IComponent {
+  flexStyled?: IFlexStyled;
+}
+
+const HeaderStyled = styled(Theme.FlexList)`
   min-height: 1em;
 `;
 
 export const Header = (props: ISelectHederProps) => {
-  const { className, children } = props;
+  const { className, children, flexStyled } = props;
   const { isOpen, setOpen } = useSelectContext();
 
   const handleSwitch = () => setOpen(!isOpen);
 
   return (
-    <HeaderStyled className={className} onClick={handleSwitch}>
+    <HeaderStyled className={className} onClick={handleSwitch} {...flexStyled}>
       {children}
     </HeaderStyled>
   );
