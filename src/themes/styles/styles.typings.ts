@@ -1,6 +1,9 @@
-import { TFontSizeNames } from 'themes/font-size';
-import { TColorNames } from 'themes/colors';
-import { TFontsNames } from 'themes/fonts';
+import { ThemedStyledProps, FlattenInterpolation } from 'styled-components';
+
+import { TFontSizeNames, TColorNames, TFontsNames } from 'themes';
+
+type TStyledComponentsCSS<T> = FlattenInterpolation<ThemedStyledProps<T, any>>;
+export type TCheckedStyledCSS = TStyledComponentsCSS<ICheckStyled>;
 
 type TGrid = 'auto-fill' | 'auto-fit';
 
@@ -46,10 +49,17 @@ export interface ISwitchStyled {
   isOpen: boolean;
 }
 
+export interface ICheckStyled {
+  isChecked: boolean;
+  activeStyled: TCheckedStyledCSS;
+  passiveStyled: TCheckedStyledCSS;
+}
+
 export interface IFlexPresetStyled {
   justifyContent?: TFlexDirectionItem;
   alignItem?: TFlexDirectionItem;
   wrap?: TWrapper;
+  isCentralize?: boolean;
 }
 
 export interface IFlexStyled extends IFlexPresetStyled {

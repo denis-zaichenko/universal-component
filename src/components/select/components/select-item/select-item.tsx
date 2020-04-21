@@ -2,15 +2,14 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useSelectContext } from '../../select.context';
-import { updateSelectItems } from '../../select.utils';
+import { updateSelectItem } from '../../select.utils';
 
-import { IComponent } from 'typings/component';
-import { ISelectItem } from '../../select.typings';
+import { IComponent } from 'typings';
 
-import { Theme } from 'themes/styles';
+import { Theme } from 'themes';
 
 export interface ISelectItemProps extends IComponent {
-  value: ISelectItem;
+  value: TSelectItem;
 }
 
 const ItemStyled = styled(Theme.FlexList)``;
@@ -20,10 +19,8 @@ export const Item = (props: ISelectItemProps) => {
   const { onSelect, setOpen, selectItem } = useSelectContext();
 
   const handleSelect = () => {
-    Array.isArray(selectItem)
-      ? onSelect(updateSelectItems(value, selectItem))
-      : onSelect(value);
     setOpen(false);
+    updateSelectItem(onSelect, value, selectItem);
   };
 
   return (

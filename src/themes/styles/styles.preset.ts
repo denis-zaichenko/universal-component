@@ -1,18 +1,19 @@
 import styled, { css } from 'styled-components';
 
-import { FONTS } from 'themes/fonts';
-import { FONT_SIZES } from 'themes/font-size';
-import { COLORS } from 'themes/colors';
+import { FONTS, FONT_SIZES, COLORS } from 'themes';
 
 import { IFlexPresetStyled, IFlexStyled, ITextStyled } from './styles.typings';
 
 const flex = css<IFlexPresetStyled>`
-  width: 100%;
   display: flex;
 
-  ${(p) => p.wrap ?? `flex-wrap: ${p.wrap};`}
-  ${(p) => p.alignItem ?? `align-items: ${p.alignItem}`};
-  ${(p) => p.justifyContent ?? `justify-content: ${p.justifyContent}`};
+  ${(p) => p.wrap && `flex-wrap: ${p.wrap};`}
+  ${(p) =>
+    (p.alignItem || p.isCentralize) &&
+    `align-items: ${p.alignItem ?? (p.isCentralize && 'center')};`};
+  ${(p) =>
+    (p.justifyContent || p.isCentralize) &&
+    `justify-content: ${p.justifyContent ?? (p.isCentralize && 'center')};`};
 `;
 
 const text = css<ITextStyled>`

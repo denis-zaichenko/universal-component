@@ -9,34 +9,36 @@ import {
   HeaderText,
   TextItem,
   ItemIcon,
+  PlaceholderWithRemove,
+  Selector,
 } from './components';
 import { SelectProvider } from './select.context';
 
-import { useOutsideCall } from 'hooks';
+import { useOutsideCall } from 'services';
 import { useSelect } from './select.state';
 
-import { IComponent } from 'typings/component';
-import { ISelectItem } from './select.typings';
+import { IComponent } from 'typings';
 
-import { Theme, IFlexPresetStyled } from 'themes/styles';
+import { Theme, IFlexPresetStyled } from 'themes';
 
-export interface ISelectProps extends IComponent, IFlexPresetStyled {
-  selectItem: ISelectItem[] | ISelectItem;
-  onSelect: (data: ISelectItem[] | ISelectItem) => void;
+export interface ISelectProps {
+  selectItem: TSelectItem[] | TSelectItem;
+  onSelect: (data: TSelectItem[] | TSelectItem) => void;
+  flexStyled?: IFlexPresetStyled;
 }
 
 const SelectStyled = styled(Theme.FlexColumn)`
   position: relative;
 `;
 
-export function Select(props: ISelectProps) {
-  const { selectItem, onSelect, children, className, ...styles } = props;
+export const Select = (props: ISelectProps & IComponent) => {
+  const { selectItem, onSelect, children, className, flexStyled } = props;
   const { isOpen, setOpen } = useSelect();
 
   const { ref } = useOutsideCall<HTMLDivElement>(() => setOpen(false));
 
   return (
-    <SelectStyled className={className} ref={ref} {...styles}>
+    <SelectStyled className={className} ref={ref} {...flexStyled}>
       <SelectProvider
         setOpen={setOpen}
         isOpen={isOpen}
@@ -47,10 +49,12 @@ export function Select(props: ISelectProps) {
       </SelectProvider>
     </SelectStyled>
   );
-}
+};
 
 Select.Menu = Menu;
+
 Select.Placeholder = Placeholder;
+Select.PlaceholderWithRemove = PlaceholderWithRemove;
 
 Select.Item = Item;
 Select.ItemIcon = ItemIcon;
@@ -58,3 +62,5 @@ Select.TextItem = TextItem;
 
 Select.Header = Header;
 Select.HeaderText = HeaderText;
+
+Select.Selector = Selector;

@@ -4,7 +4,7 @@ import styled from 'styled-components';
 import { DropDown, Header } from './components';
 import { AccordionProvide } from './accordion.context';
 
-import { IComponent } from 'typings/component';
+import { IComponent } from 'typings';
 
 interface IAccordionProps extends IComponent {}
 

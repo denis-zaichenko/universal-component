@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 
 import { useTabContext } from '../tabs-context';
 
-import { IComponent } from 'typings/component';
+import { IComponent } from 'typings';
 
-interface ITabProps extends IComponent {}
+import { Theme, TCheckedStyledCSS } from 'themes';
 
-const TabStyled = styled.div<{ isActive: boolean }>``;
+interface ITabProps extends IComponent {
+  activeStyled: TCheckedStyledCSS;
+  passiveStyled: TCheckedStyledCSS;
+}
 
 export const Tab = (props: ITabProps) => {
-  const { children, className } = props;
+  const { children, className, activeStyled, passiveStyled } = props;
   const [index, setIndex] = useState<number>(0);
   const { generateTabIndex, setIndexTab, indexTab } = useTabContext();
 
@@ -21,8 +23,14 @@ export const Tab = (props: ITabProps) => {
   const select = () => setIndexTab(index);
 
   return (
-    <TabStyled onClick={select} isActive={isActive} className={className}>
+    <Theme.Checked
+      onClick={select}
+      isChecked={isActive}
+      className={className}
+      activeStyled={activeStyled}
+      passiveStyled={passiveStyled}
+    >
       {children}
-    </TabStyled>
+    </Theme.Checked>
   );
 };

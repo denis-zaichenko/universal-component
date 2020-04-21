@@ -4,7 +4,7 @@ import { Tab, Panel } from './components';
 
 import { TabContext, useTabContextState } from './tabs-context';
 
-import { Theme } from 'themes/styles';
+import { Theme } from 'themes';
 
 interface ITabsProps {
   children: ReactNode;

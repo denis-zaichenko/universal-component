@@ -4,7 +4,7 @@
     "project": "tsconfig.json",
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true // Allows for the parsing of JSX
+      "jsx": true
     }
   },
   "plugins": ["react", "@typescript-eslint"],
@@ -21,11 +21,12 @@
     "@typescript-eslint/interface-name-prefix": "off",
     "@typescript-eslint/explicit-function-return-type": "off",
     "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/no-explicit-any": "off"
+    "@typescript-eslint/no-explicit-any": "off",
+    "react/prop-types": "off"
   },
   "settings": {
     "react": {
-      "version": "detect" // Tells eslint-plugin-react to automatically detect the version of React to use
+      "version": "detect"
     }
   }
 }

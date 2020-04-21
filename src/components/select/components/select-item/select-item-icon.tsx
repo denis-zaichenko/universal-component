@@ -5,14 +5,18 @@ import { Item, ISelectItemProps } from './select-item';
 import { Icon, IIconProps } from 'components/icons';
 import { Placeholder } from '../select-placeholder';
 
-import { ITextStyled } from 'themes/styles';
+import { ITextStyled } from 'themes';
 
 export interface ISelectItemWithIconProps extends ISelectItemProps {
   textStyled?: ITextStyled;
   iconParameters: IIconProps;
 }
 
-const ItemStyled = styled(Item)<{ size?: string }>`
+interface ISelectItemWithIconStyled {
+  size?: string;
+}
+
+const ItemStyled = styled(Item)<ISelectItemWithIconStyled>`
   position: relative;
   margin-left: ${(p) => p.size && `calc(${p.size} + 1em)`};
 `;
@@ -23,9 +27,6 @@ const IconStyled = styled(Icon)`
   transform: translateY(-50%);
   left: 0.5em;
 `;
-
-export const isIconItem = (props: any): props is ISelectItemWithIconProps =>
-  props.icon && props.value;
 
 export const ItemIcon = (props: ISelectItemWithIconProps) => {
   const { value, children, className, textStyled, iconParameters } = props;

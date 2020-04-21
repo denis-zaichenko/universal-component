@@ -1,15 +1,12 @@
 import React, { useState, useEffect } from 'react';
-import styled from 'styled-components';
 
 import { useTabContext } from '../tabs-context';
 
-import { IComponent } from 'typings/component';
+import { IComponent } from 'typings';
 
-import { Theme } from 'themes/styles';
+import { Theme } from 'themes';
 
 export interface ITabPanelProps extends IComponent {}
-
-const PanelStyled = styled(Theme.Switch)``;
 
 export const Panel = (props: ITabPanelProps) => {
   const { children, className } = props;
@@ -21,8 +18,8 @@ export const Panel = (props: ITabPanelProps) => {
   const isOpen = index === indexTab;
 
   return (
-    <PanelStyled className={className} isOpen={isOpen}>
+    <Theme.Switch className={className} isOpen={isOpen}>
       {children}
-    </PanelStyled>
+    </Theme.Switch>
   );
 };

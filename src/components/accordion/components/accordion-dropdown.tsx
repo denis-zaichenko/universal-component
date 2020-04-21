@@ -3,9 +3,9 @@ import styled from 'styled-components';
 
 import { useAccordionContext } from '../accordion.context';
 
-import { IComponent } from 'typings/component';
+import { IComponent } from 'typings';
 
-import { Theme } from 'themes/styles';
+import { Theme } from 'themes';
 
 const DropDownStyled = styled(Theme.Switch)``;
 

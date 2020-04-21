@@ -1,4 +1,4 @@
-import { useProgressState } from 'hooks';
+import { useUpdateState } from 'services';
 
 interface ISelectStateData {
   isOpen: boolean;
@@ -13,7 +13,7 @@ const initialState: ISelectStateData = {
 };
 
 export const useSelect = (): ISelectState => {
-  const [state, updateState] = useProgressState<ISelectStateData>(initialState);
+  const [state, updateState] = useUpdateState<ISelectStateData>(initialState);
 
   const setOpen = (isOpen: boolean) => updateState({ isOpen });
 

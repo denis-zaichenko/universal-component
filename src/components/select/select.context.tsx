@@ -1,12 +1,11 @@
 import React, { createContext, useContext, ReactNode } from 'react';
 
-import { ISelectItem } from './select.typings';
 import { ISelectState } from './select.state';
 
 interface ISelectContext extends ISelectState {
-  selectItem: ISelectItem[] | ISelectItem;
+  selectItem: TSelectItem[] | TSelectItem;
 
-  onSelect: (data: ISelectItem[] | ISelectItem) => void;
+  onSelect: (data: TSelectItem[] | TSelectItem) => void;
 }
 
 const SelectContext = createContext<ISelectContext>({

@@ -2,15 +2,15 @@ import React from 'react';
 import styled from 'styled-components';
 
 import { useSelectContext } from '../select.context';
-import { createItemList, TSelectItem } from '../select.utils';
+import { createItemList, TCreateSelectItem } from '../select.utils';
 
-import { IComponent } from 'typings/component';
+import { IComponent } from 'typings';
 
-import { Theme } from 'themes/styles';
+import { Theme } from 'themes';
 
 export interface ISelectMenuProps extends IComponent {
   topGap?: string;
-  itemList?: TSelectItem[];
+  itemList?: TCreateSelectItem[];
 }
 
 interface IMenuStyled {

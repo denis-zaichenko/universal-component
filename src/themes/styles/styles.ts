@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 import { Preset } from './styles.preset';
 
-import { ISwitchStyled, IWrapper, IGrid } from './styles.typings';
+import { ISwitchStyled, IWrapper, IGrid, ICheckStyled } from './styles.typings';
 
 export const Theme = {
   ...Preset,
@@ -26,5 +26,9 @@ export const Theme = {
   Switch: styled.div<ISwitchStyled>`
     width: 100%;
     display: ${(p) => (p.isOpen ? 'block' : 'none')};
+  `,
+
+  Checked: styled.div<ICheckStyled>`
+    ${(p) => (p.isChecked ? p.activeStyled : p.passiveStyled)}
   `,
 };
