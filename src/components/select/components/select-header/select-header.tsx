@@ -1,22 +1,22 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
-import { ArrowIcon } from 'components/icons';
+import { ArrowIcon } from 'components/image';
 
 import { useSelectContext } from '../../select.context';
 
-import { FComponent } from 'typings';
-
 import { Theme } from 'themes';
 
-export interface ISelectHederProps {}
+export interface ISelectHederProps {
+  className?: string;
+}
 
-const HeaderStyled = styled(Theme.FlexList)`
+const HeaderStyled = styled(Theme.Flexbox)`
   min-height: 1em;
   padding: 0.25em;
 `;
 
-export const Header: FComponent<ISelectHederProps> = (props) => {
+export const Header: FC<ISelectHederProps> = (props) => {
   const { className, children } = props;
   const { isOpen, setOpen } = useSelectContext();
 

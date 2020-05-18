@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 
 import { useTabContext } from '../tabs-context';
 
-import { IComponent } from 'typings';
-
 import { Theme } from 'themes';
 
-export interface ITabPanelProps extends IComponent {}
+export interface ITabPanelProps {
+  className?: string;
+}
 
-export const Panel = (props: ITabPanelProps) => {
+export const Panel: FC<ITabPanelProps> = (props) => {
   const { children, className } = props;
   const [index, setIndex] = useState<number>(0);
   const { generatePanelIndex, indexTab } = useTabContext();

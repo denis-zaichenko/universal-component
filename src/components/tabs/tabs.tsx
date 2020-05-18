@@ -15,13 +15,14 @@ export const Tabs = (props: ITabsProps) => {
   const { children, className } = props;
   const state = useTabContextState();
   return (
-    <Theme.FlexColumn
+    <Theme.Flexbox
+      isColumn
       itemGap="16px"
       alignItem="space-between"
       className={className}
     >
       <TabContext.Provider value={{ ...state }}>{children}</TabContext.Provider>
-    </Theme.FlexColumn>
+    </Theme.Flexbox>
   );
 };
 

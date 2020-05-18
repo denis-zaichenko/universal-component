@@ -1,16 +1,8 @@
 import React from 'react';
 
-import {
-  TextItem,
-  ItemIcon,
-  ISelectTextItemProps,
-  ISelectItemWithIconProps,
-} from './components';
+import { TextItem, ItemIcon, ISelectItemWithIconProps } from './components';
 
-export type TCreateSelectItem =
-  | string
-  | ISelectTextItemProps
-  | ISelectItemWithIconProps;
+export type TCreateSelectItem = string | ISelectItemWithIconProps;
 
 const isSelectItem = (item: TSelectItem): item is ISelectItem =>
   typeof item === 'object' && !!item.value;

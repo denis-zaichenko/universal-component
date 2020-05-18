@@ -1,20 +1,16 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { FC } from 'react';
 
 import { useSelectContext } from '../../select.context';
 import { updateSelectItem } from '../../select.utils';
 
-import { IComponent } from 'typings';
-
 import { Theme } from 'themes';
 
-export interface ISelectItemProps extends IComponent {
+export interface ISelectItemProps {
   value: TSelectItem;
+  className?: string;
 }
 
-const ItemStyled = styled(Theme.FlexList)``;
-
-export const Item = (props: ISelectItemProps) => {
+export const Item: FC<ISelectItemProps> = (props) => {
   const { children, value, className } = props;
   const { onSelect, setOpen, selectItem } = useSelectContext();
 
@@ -24,8 +20,8 @@ export const Item = (props: ISelectItemProps) => {
   };
 
   return (
-    <ItemStyled className={className} onClick={handleSelect}>
+    <Theme.Flexbox className={className} onClick={handleSelect}>
       {children}
-    </ItemStyled>
+    </Theme.Flexbox>
   );
 };

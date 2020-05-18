@@ -1,75 +1,64 @@
 import { ThemedStyledProps, FlattenInterpolation } from 'styled-components';
 
 import { TFontSizeNames, TColorNames, TFontsNames } from 'themes';
+import { TImageNames } from 'components/image';
 
-type TStyledComponentsCSS<T> = FlattenInterpolation<ThemedStyledProps<T, any>>;
+export type TStyledComponentsCSS<T = {}> = FlattenInterpolation<
+  ThemedStyledProps<T, any>
+>;
 export type TCheckedStyledCSS = TStyledComponentsCSS<ICheckStyled>;
 
-type TGrid = 'auto-fill' | 'auto-fit';
-
-type TFlexDirectionItem =
+export type TFlexDirectionItem =
   | 'center'
   | 'space-between'
   | 'flex-end'
   | 'flex-start'
   | 'space-evenly';
 
-type TTextAlign = 'center' | 'right' | 'left';
+export type TTextAlign = 'center' | 'right' | 'left';
 
-type TWrapper = 'wrap' | 'nowrap' | 'wrap-reverse';
-
-export interface ITextStyled {
+//* CSS preset
+export interface ITextTemplate {
   fontSize?: TFontSizeNames;
   fontFamily?: TFontsNames;
-
-  margin?: string;
   color?: TColorNames;
-
   textAlign?: TTextAlign;
-  lineHeight?: number;
 }
 
-export interface IButtonStyled {
-  fontSize?: TFontSizeNames;
-  font?: TFontsNames;
-
-  width?: string;
-  padding?: string;
-
-  backgroundColor?: TColorNames;
-  color?: TColorNames;
+export interface IFlexboxTemplate {
+  justifyContent?: TFlexDirectionItem;
+  alignItem?: TFlexDirectionItem;
+  isCentralize?: boolean;
+  isColumn?: boolean;
 }
 
-export interface IWrapper {
+export interface IBackgroundFullPageImageTemplate {
+  image: TImageNames;
+}
+
+export interface IRoundTemplate {
+  size: string;
+}
+
+//* Preset component
+export interface IWrapperStyled extends ITextTemplate {
   itemGap?: string;
-  padding?: string;
 }
 
 export interface ISwitchStyled {
   isOpen: boolean;
 }
 
-export interface ICheckStyled {
+export interface ICheckCssStyled {
+  activeStyled?: TCheckedStyledCSS;
+  passiveStyled?: TCheckedStyledCSS;
+}
+
+export interface ICheckStyled extends ICheckCssStyled {
   isChecked: boolean;
-  activeStyled: TCheckedStyledCSS;
-  passiveStyled: TCheckedStyledCSS;
 }
 
-export interface IFlexPresetStyled {
-  justifyContent?: TFlexDirectionItem;
-  alignItem?: TFlexDirectionItem;
-  wrap?: TWrapper;
-  isCentralize?: boolean;
-}
-
-export interface IFlexStyled extends IFlexPresetStyled {
+export interface IFlexboxStyled extends IFlexboxTemplate, ITextTemplate {
   itemGap?: string;
-}
-
-export interface IGrid {
-  columns?: number | TGrid;
-  itemGap?: string;
-
-  minWidth?: string;
-  maxWidth?: string;
+  isColumn?: boolean;
 }

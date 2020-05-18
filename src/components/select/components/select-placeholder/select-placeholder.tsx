@@ -1,27 +1,22 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { FC } from 'react';
 
 import { selectItemToString } from '../../select.utils';
 
-import { IComponent } from 'typings';
+import { Theme } from 'themes';
 
-import { Theme, ITextStyled } from 'themes';
-
-export interface ISelectPlaceholderProps extends IComponent {
+export interface ISelectPlaceholderProps {
+  className?: string;
   selectItem: TSelectItem;
   placeholder?: string;
-  textStyled?: ITextStyled;
 }
 
-const PlaceholderStyled = styled(Theme.Text)``;
-
-export const Placeholder = (props: ISelectPlaceholderProps) => {
-  const { placeholder, selectItem, textStyled, children } = props;
+export const Placeholder: FC<ISelectPlaceholderProps> = (props) => {
+  const { placeholder, selectItem, children, className } = props;
 
   return (
-    <PlaceholderStyled {...textStyled}>
+    <Theme.Text className={className}>
       {selectItemToString(selectItem, placeholder)}
       {children}
-    </PlaceholderStyled>
+    </Theme.Text>
   );
 };

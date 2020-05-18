@@ -1,37 +1,32 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { Select, ISelectProps } from '../select';
 
-import { FComponent } from 'typings';
 import { ISelectTextHeaderProps } from './select-header';
 import { ISelectMenuProps } from './select-menu';
 
-export interface ISelectorProps
-  extends ISelectProps,
-    ISelectTextHeaderProps,
-    ISelectMenuProps {}
+type TSelectorExtends = ISelectProps &
+  ISelectTextHeaderProps &
+  ISelectMenuProps;
 
-export const Selector: FComponent<ISelectorProps> = (props) => {
+export interface ISelectorProps extends TSelectorExtends {
+  className?: string;
+}
+
+export const Selector: FC<ISelectorProps> = (props) => {
   const {
     className,
     onSelect,
     selectItem,
-    flexStyled,
     children,
     removeIcon,
-    textStyled,
     itemList,
     topGap,
   } = props;
 
   return (
-    <Select
-      onSelect={onSelect}
-      selectItem={selectItem}
-      flexStyled={flexStyled}
-      className={className}
-    >
-      <Select.HeaderText removeIcon={removeIcon} textStyled={textStyled} />
+    <Select onSelect={onSelect} selectItem={selectItem} className={className}>
+      <Select.HeaderText removeIcon={removeIcon} />
       <Select.Menu itemList={itemList} topGap={topGap} />
       {children}
     </Select>

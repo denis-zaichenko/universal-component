@@ -18,11 +18,13 @@
     "node": true
   },
   "rules": {
+    "no-shadow": "error",
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "curly": "error",
+    "react/prop-types": "off",
+    "react/display-name": "off",
     "@typescript-eslint/interface-name-prefix": "off",
-    "@typescript-eslint/explicit-function-return-type": "off",
-    "@typescript-eslint/no-empty-interface": "off",
-    "@typescript-eslint/no-explicit-any": "off",
-    "react/prop-types": "off"
+    "@typescript-eslint/explicit-function-return-type": "off"
   },
   "settings": {
     "react": {

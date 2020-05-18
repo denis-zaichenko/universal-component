@@ -1,24 +1,21 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { FC } from 'react';
 
-import { ArrowIcon } from 'components/icons';
+import { ArrowIcon } from 'components/image';
 
 import { useAccordionContext } from '../accordion.context';
 
-import { IComponent } from 'typings';
+export interface IAccordionHeaderProps {
+  className?: string;
+}
 
-const HeaderStyled = styled.div``;
-
-export interface IAccordionHeaderProps extends IComponent {}
-
-export const Header = (props: IAccordionHeaderProps) => {
+export const Header: FC<IAccordionHeaderProps> = (props) => {
   const { children, className } = props;
   const { switchOpen, isOpen } = useAccordionContext();
 
   return (
-    <HeaderStyled onClick={switchOpen} className={className}>
+    <div onClick={switchOpen} className={className}>
       {children}
       <ArrowIcon isArrowUp={!isOpen} />
-    </HeaderStyled>
+    </div>
   );
 };

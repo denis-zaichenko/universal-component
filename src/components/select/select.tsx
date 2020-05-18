@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 import styled from 'styled-components';
 
 import {
@@ -14,31 +14,30 @@ import {
 } from './components';
 import { SelectProvider } from './select.context';
 
-import { useOutsideCall } from 'services';
+import { useOutsideCall } from 'services/hooks';
 import { useSelect } from './select.state';
 
-import { IComponent } from 'typings';
-
-import { Theme, IFlexPresetStyled } from 'themes';
+import { Theme } from 'themes';
 
 export interface ISelectProps {
+  className?: string;
+  children?: ReactNode;
   selectItem: TSelectItem[] | TSelectItem;
   onSelect: (data: TSelectItem[] | TSelectItem) => void;
-  flexStyled?: IFlexPresetStyled;
 }
 
-const SelectStyled = styled(Theme.FlexColumn)`
+const SelectStyled = styled(Theme.Flexbox)`
   position: relative;
 `;
 
-export const Select = (props: ISelectProps & IComponent) => {
-  const { selectItem, onSelect, children, className, flexStyled } = props;
+export const Select = (props: ISelectProps) => {
+  const { selectItem, onSelect, children, className } = props;
   const { isOpen, setOpen } = useSelect();
 
-  const { ref } = useOutsideCall<HTMLDivElement>(() => setOpen(false));
+  const ref = useOutsideCall<HTMLDivElement>(() => setOpen(false));
 
   return (
-    <SelectStyled className={className} ref={ref} {...flexStyled}>
+    <SelectStyled isColumn className={className} ref={ref}>
       <SelectProvider
         setOpen={setOpen}
         isOpen={isOpen}

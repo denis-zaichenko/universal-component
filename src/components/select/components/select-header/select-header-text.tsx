@@ -1,38 +1,34 @@
-import React from 'react';
+import React, { FC } from 'react';
 
 import { PlaceholderWithRemove, IRemoveIcon } from '../select-placeholder';
 import { Header, ISelectHederProps } from './select-header';
 
 import { useSelectContext } from '../../select.context';
 
-import { ITextStyled } from 'themes';
-import { FComponent } from 'typings';
-
-type THederExtends = ISelectHederProps;
-export interface ISelectTextHeaderProps extends THederExtends {
-  textStyled?: ITextStyled;
+export interface ISelectTextHeaderProps extends ISelectHederProps {
+  className?: string;
   removeIcon?: IRemoveIcon | boolean;
 }
 
-export const HeaderText: FComponent<ISelectTextHeaderProps> = (props) => {
-  const { children, className, textStyled, removeIcon } = props;
+export const HeaderText: FC<ISelectTextHeaderProps> = (props) => {
+  const { children, className, removeIcon } = props;
   const { selectItem } = useSelectContext();
-
   const iconPlaceholder: IRemoveIcon | undefined =
     typeof removeIcon === 'boolean' ? { type: 'cross' } : removeIcon;
 
-  const Item = (props: { item: TSelectItem }) => (
-    <PlaceholderWithRemove
-      removeIcon={iconPlaceholder}
-      selectItem={props.item}
-      textStyled={textStyled}
-    />
-  );
-
   const placeholder = Array.isArray(selectItem) ? (
-    selectItem.map((item, index) => <Item key={index} item={item} />)
+    selectItem.map((item, index) => (
+      <PlaceholderWithRemove
+        key={index}
+        selectItem={item}
+        removeIcon={iconPlaceholder}
+      />
+    ))
   ) : (
-    <Item item={selectItem} />
+    <PlaceholderWithRemove
+      selectItem={selectItem}
+      removeIcon={iconPlaceholder}
+    />
   );
 
   return (

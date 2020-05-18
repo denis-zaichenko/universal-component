@@ -1,27 +1,28 @@
-import React from 'react';
+import React, { FC } from 'react';
 
-import { Icon, TIconNames } from 'components/icons';
+import { Image, TImageNames } from 'components/image';
 import { Placeholder, ISelectPlaceholderProps } from './select-placeholder';
 
 import { useSelectContext } from '../../select.context';
 import { updateSelectItem } from '../../select.utils';
 
-import { FComponent, TMouseEvent } from 'typings';
+import { TMouseEvent } from 'typings';
 
 import { Theme } from 'themes';
 
 export interface IRemoveIcon {
-  type: TIconNames;
+  type: TImageNames;
   size?: string;
 }
 
 export interface ISelectPlaceholderWithRemoveProps
   extends ISelectPlaceholderProps {
+  className?: string;
   removeIcon?: IRemoveIcon;
   itemGap?: string;
 }
 
-export const PlaceholderWithRemove: FComponent<ISelectPlaceholderWithRemoveProps> = (
+export const PlaceholderWithRemove: FC<ISelectPlaceholderWithRemoveProps> = (
   props
 ) => {
   const {
@@ -30,7 +31,6 @@ export const PlaceholderWithRemove: FComponent<ISelectPlaceholderWithRemoveProps
     removeIcon,
     selectItem: item,
     placeholder,
-    textStyled,
     itemGap,
   } = props;
   const { onSelect, selectItem } = useSelectContext();
@@ -41,7 +41,7 @@ export const PlaceholderWithRemove: FComponent<ISelectPlaceholderWithRemoveProps
   };
 
   return (
-    <Theme.FlexList
+    <Theme.Flexbox
       justifyContent="space-between"
       alignItem="center"
       itemGap={itemGap}
@@ -49,17 +49,16 @@ export const PlaceholderWithRemove: FComponent<ISelectPlaceholderWithRemoveProps
       <Placeholder
         selectItem={item}
         placeholder={placeholder}
-        textStyled={textStyled}
         className={className}
       />
       {children}
       {removeIcon && (
-        <Icon
+        <Image
           onClick={handler}
           type={removeIcon.type}
           size={removeIcon.size ?? '1.25em'}
         />
       )}
-    </Theme.FlexList>
+    </Theme.Flexbox>
   );
 };

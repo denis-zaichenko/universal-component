@@ -1,21 +1,19 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { ReactNode } from 'react';
 
 import { DropDown, Header } from './components';
 import { AccordionProvide } from './accordion.context';
 
-import { IComponent } from 'typings';
-
-interface IAccordionProps extends IComponent {}
-
-const AccordionStyled = styled.div``;
+interface IAccordionProps {
+  className?: string;
+  children?: ReactNode;
+}
 
 export const Accordion = (props: IAccordionProps) => {
   const { children, className } = props;
   return (
-    <AccordionStyled className={className}>
+    <div className={className}>
       <AccordionProvide>{children}</AccordionProvide>
-    </AccordionStyled>
+    </div>
   );
 };
 

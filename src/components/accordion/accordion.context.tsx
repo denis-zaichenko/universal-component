@@ -1,12 +1,8 @@
-import React, { createContext, useState, ReactNode, useContext } from 'react';
+import React, { createContext, useState, useContext, FC } from 'react';
 
 interface IAccordionContext {
   switchOpen: () => void;
   isOpen: boolean;
-}
-
-interface IAccordionProvider {
-  children?: ReactNode;
 }
 
 const AccordionContext = createContext<IAccordionContext>({
@@ -16,7 +12,7 @@ const AccordionContext = createContext<IAccordionContext>({
   },
 });
 
-export const AccordionProvide = (props: IAccordionProvider) => {
+export const AccordionProvide: FC = (props) => {
   const { children } = props;
   const [isOpen, setOpen] = useState<boolean>(false);
   const switchOpen = () => setOpen(!isOpen);

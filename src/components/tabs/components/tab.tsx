@@ -1,17 +1,16 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, FC } from 'react';
 
 import { useTabContext } from '../tabs-context';
 
-import { IComponent } from 'typings';
-
 import { Theme, TCheckedStyledCSS } from 'themes';
 
-interface ITabProps extends IComponent {
+interface ITabProps {
+  className?: string;
   activeStyled: TCheckedStyledCSS;
   passiveStyled: TCheckedStyledCSS;
 }
 
-export const Tab = (props: ITabProps) => {
+export const Tab: FC<ITabProps> = (props) => {
   const { children, className, activeStyled, passiveStyled } = props;
   const [index, setIndex] = useState<number>(0);
   const { generateTabIndex, setIndexTab, indexTab } = useTabContext();

@@ -1,14 +1,13 @@
-import React from 'react';
+import React, { FC } from 'react';
 import styled from 'styled-components';
 
 import { useSelectContext } from '../select.context';
 import { createItemList, TCreateSelectItem } from '../select.utils';
 
-import { IComponent } from 'typings';
-
 import { Theme } from 'themes';
 
-export interface ISelectMenuProps extends IComponent {
+export interface ISelectMenuProps {
+  className?: string;
   topGap?: string;
   itemList?: TCreateSelectItem[];
 }
@@ -26,7 +25,7 @@ const MenuStyled = styled(Theme.Wrapper)<IMenuStyled>`
   ${(p) => p.topGap && `margin-top: ${p.topGap};`}
 `;
 
-export const Menu = (props: ISelectMenuProps) => {
+export const Menu: FC<ISelectMenuProps> = (props) => {
   const { children, className, topGap, itemList } = props;
   const { isOpen } = useSelectContext();
 

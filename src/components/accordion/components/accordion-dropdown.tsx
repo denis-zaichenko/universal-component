@@ -1,23 +1,20 @@
-import React from 'react';
-import styled from 'styled-components';
+import React, { FC } from 'react';
 
 import { useAccordionContext } from '../accordion.context';
 
-import { IComponent } from 'typings';
-
 import { Theme } from 'themes';
 
-const DropDownStyled = styled(Theme.Switch)``;
+export interface IAccordionDropDownProps {
+  className?: string;
+}
 
-export interface IAccordionDropDownProps extends IComponent {}
-
-export const DropDown = (props: IAccordionDropDownProps) => {
+export const DropDown: FC<IAccordionDropDownProps> = (props) => {
   const { children, className } = props;
   const { isOpen } = useAccordionContext();
 
   return (
-    <DropDownStyled isOpen={isOpen} className={className}>
+    <Theme.Switch isOpen={isOpen} className={className}>
       {children}
-    </DropDownStyled>
+    </Theme.Switch>
   );
 };
