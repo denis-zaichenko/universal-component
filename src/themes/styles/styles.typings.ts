@@ -1,12 +1,6 @@
-import { ThemedStyledProps, FlattenInterpolation } from 'styled-components';
-
 import { TFontSizeNames, TColorNames, TFontsNames } from 'themes';
 import { TImageNames } from 'components/image';
-
-export type TStyledComponentsCSS<T = {}> = FlattenInterpolation<
-  ThemedStyledProps<T, any>
->;
-export type TCheckedStyledCSS = TStyledComponentsCSS<ICheckStyled>;
+import { CSS } from 'typings';
 
 export type TFlexDirectionItem =
   | 'center'
@@ -23,13 +17,6 @@ export interface ITextTemplate {
   fontFamily?: TFontsNames;
   color?: TColorNames;
   textAlign?: TTextAlign;
-}
-
-export interface IFlexboxTemplate {
-  justifyContent?: TFlexDirectionItem;
-  alignItem?: TFlexDirectionItem;
-  isCentralize?: boolean;
-  isColumn?: boolean;
 }
 
 export interface IBackgroundFullPageImageTemplate {
@@ -49,16 +36,14 @@ export interface ISwitchStyled {
   isOpen: boolean;
 }
 
-export interface ICheckCssStyled {
-  activeStyled?: TCheckedStyledCSS;
-  passiveStyled?: TCheckedStyledCSS;
+export interface ICheckStyled {
+  css: CSS;
 }
 
-export interface ICheckStyled extends ICheckCssStyled {
-  isChecked: boolean;
-}
-
-export interface IFlexboxStyled extends IFlexboxTemplate, ITextTemplate {
+export interface IFlexboxStyled extends ITextTemplate {
   itemGap?: string;
   isColumn?: boolean;
+  justifyContent?: TFlexDirectionItem;
+  alignItem?: TFlexDirectionItem;
+  isCentralize?: boolean;
 }

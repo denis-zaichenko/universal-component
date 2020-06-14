@@ -5,14 +5,14 @@ interface ITabContextData {
 }
 
 interface ITabContext extends ITabContextData {
-  setIndexTab: (index: number) => void;
+  setIndexTab: (index: number) => () => void;
   generateTabIndex: () => number;
   generatePanelIndex: () => number;
 }
 
 export const TabContext = createContext<ITabContext>({
   indexTab: 0,
-  setIndexTab: () => {
+  setIndexTab: () => () => {
     return;
   },
   generatePanelIndex: () => -1,
@@ -29,7 +29,7 @@ export const useTabContextState = (): ITabContext => {
   let tabIndex = 0;
   let panelIndex = 0;
 
-  const setIndexTab = (indexTab: number) => setState({ indexTab });
+  const setIndexTab = (indexTab: number) => () => setState({ indexTab });
 
   const generateTabIndex = () => tabIndex++;
   const generatePanelIndex = () => panelIndex++;

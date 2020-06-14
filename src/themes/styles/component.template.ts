@@ -29,7 +29,7 @@ export const Theme = {
     display: ${(p) => (p.isOpen ? 'block' : 'none')};
   `,
   Checked: styled.div<ICheckStyled>`
-    ${(p) => (p.isChecked ? p.activeStyled : p.passiveStyled)}
+    ${(p) => p.css}
   `,
 
   Flexbox: styled.div<IFlexboxStyled>`

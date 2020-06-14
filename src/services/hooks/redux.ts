@@ -18,6 +18,10 @@ export const useAction = <T extends (...args: any[]) => any>(action: T) => {
   };
 };
 
+/**
+ * Wrapped dispatch action create from callback
+ * @param action action creator in redux
+ */
 export const useActionCallback = <T extends (...args: any[]) => any>(
   action: T
 ) => {

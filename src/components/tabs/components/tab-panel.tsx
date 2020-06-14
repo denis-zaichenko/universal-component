@@ -10,9 +10,9 @@ export interface ITabPanelProps {
 
 export const Panel: FC<ITabPanelProps> = (props) => {
   const { children, className } = props;
+
   const [index, setIndex] = useState<number>(0);
   const { generatePanelIndex, indexTab } = useTabContext();
-
   useEffect(() => setIndex(generatePanelIndex()), []);
 
   const isOpen = index === indexTab;
