@@ -18,11 +18,9 @@ export const Theme = {
 
   Paragraph: styled.p<ITextTemplate>`
     ${cssTextTemplate}
-    min-width: fit-content;
   `,
   Text: styled.span<ITextTemplate>`
     ${cssTextTemplate}
-    min-width: fit-content;
   `,
 
   Switch: styled.div<{ isOpen: boolean }>`

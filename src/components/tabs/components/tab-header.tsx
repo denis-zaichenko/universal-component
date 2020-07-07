@@ -6,12 +6,12 @@ import { TAB_THEMES, TTabThemes } from '../tabs.constants';
 
 import { Theme } from 'themes';
 
-interface ITabProps {
+interface ITabHeaderProps {
   className?: string;
   theme?: TTabThemes;
 }
 
-export const Tab: FC<ITabProps> = (props) => {
+export const TabHeader: FC<ITabHeaderProps> = (props) => {
   const { children, className, theme } = props;
   const { active, inactive } = TAB_THEMES[theme ?? 'default'];
 

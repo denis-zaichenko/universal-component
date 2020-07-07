@@ -3,10 +3,12 @@ import React, { FC, ReactElement } from 'react';
 import { Button } from 'components/button';
 import { ModalWrapper, IModalWrapperProps } from './modal-wrapper';
 
-export interface IInfoModalProps extends IModalWrapperProps {
+export interface IInformationModalParameters extends IModalWrapperProps {
   buttonText: string;
-  onConfirm(): void;
+  onConfirm?: () => void;
+}
 
+export interface IInfoModalProps extends IInformationModalParameters {
   title?: ReactElement;
 }
 
@@ -17,16 +19,20 @@ export const InfoModal: FC<IInfoModalProps> = (props) => {
     buttonText,
     className,
     title,
+    isNotCenter,
+    itemGap,
 
-    onConfirm,
     onCloseModal,
+    onConfirm = onCloseModal,
   } = props;
 
   return (
     <ModalWrapper
+      isNotCenter={isNotCenter}
       className={className}
       isClose={isClose}
       onCloseModal={onCloseModal}
+      itemGap={itemGap}
     >
       {title}
       {children}

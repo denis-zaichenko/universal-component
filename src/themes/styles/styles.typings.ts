@@ -23,10 +23,6 @@ export interface IBackgroundFullPageImageTemplate {
   image: TImageNames;
 }
 
-export interface IRoundTemplate {
-  size: string;
-}
-
 //* Preset component
 export interface IWrapperStyled extends ITextTemplate {
   itemGap?: string;

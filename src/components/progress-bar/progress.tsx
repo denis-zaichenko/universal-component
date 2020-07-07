@@ -3,9 +3,11 @@ import styled from 'styled-components';
 
 import { TColorNames, COLORS } from 'themes';
 
-interface IProgressIdenticalProps {
+export interface IProgressIdenticalProps {
   progressColor: TColorNames;
   backgroundColor: TColorNames;
+
+  borderColor?: TColorNames;
 }
 
 interface IProgressStyled extends IProgressIdenticalProps {
@@ -24,6 +26,7 @@ const ProgressBar = styled.div<IProgressStyled>`
   width: 100%;
   height: 10px;
   background-color: ${(p) => COLORS[p.backgroundColor]};
+  ${(props) => props.borderColor && `border: 1px solid ${props.borderColor};`}
 
   &::after {
     content: '';

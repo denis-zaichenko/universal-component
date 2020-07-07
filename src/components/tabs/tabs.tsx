@@ -1,7 +1,5 @@
 import React, { ReactNode } from 'react';
 
-import { Tab, Panel } from './components';
-
 import { TabContext, useTabContextState } from './tabs-context';
 
 import { Theme } from 'themes';
@@ -25,6 +23,3 @@ export const Tabs = (props: ITabsProps) => {
     </Theme.Flexbox>
   );
 };
-
-Tabs.Tab = Tab;
-Tabs.TabPanel = Panel;

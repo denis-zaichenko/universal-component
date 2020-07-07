@@ -6,10 +6,11 @@ import { FONTS, FONT_SIZES, COLORS } from 'themes';
 import {
   ITextTemplate,
   IBackgroundFullPageImageTemplate,
-  IRoundTemplate,
 } from './styles.typings';
 
 export const cssTextTemplate = css<ITextTemplate>`
+  min-width: fit-content;
+
   ${(p) => p.fontFamily && `font-family: ${FONTS[p.fontFamily]}`};
   ${(p) => p.fontSize && `font-size: ${FONT_SIZES[p.fontSize]}`};
 
@@ -22,10 +23,4 @@ export const cssBackgroundImageTemplate = css<IBackgroundFullPageImageTemplate>`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-`;
-
-export const cssRoundTemplate = css<IRoundTemplate>`
-  width: ${(p) => p.size};
-  height: ${(p) => p.size};
-  border-radius: 50%;
 `;

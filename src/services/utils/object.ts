@@ -24,3 +24,5 @@ export const keyofObject = <T extends {}>(object: T) =>
  */
 export const valuesOfObject = <T extends {}>(object: T) =>
   Object.values(object) as T[keyof T][];
+
+export const getItemText = (item: IItem) => item.label ?? item.value;

@@ -1,20 +1,26 @@
-import React, { FC } from 'react';
+import React, { FC, ReactElement } from 'react';
 
 import { Image, TImageNames } from 'components/image';
 import { InfoModal, IInfoModalProps } from './info-modal';
 
 export interface IInfoImageModalProps extends IInfoModalProps {
   image: TImageNames;
+  subtitle?: ReactElement;
 }
 
 export const InfoImageModal: FC<IInfoImageModalProps> = (props) => {
   const {
-    isClose,
     children,
-    buttonText,
     className,
-    title,
+
+    isClose,
+    isNotCenter,
+
     image,
+    buttonText,
+    title,
+    subtitle,
+
     itemGap,
 
     onConfirm,
@@ -23,6 +29,7 @@ export const InfoImageModal: FC<IInfoImageModalProps> = (props) => {
 
   return (
     <InfoModal
+      isNotCenter={isNotCenter}
       className={className}
       isClose={isClose}
       itemGap={itemGap}
@@ -32,6 +39,7 @@ export const InfoImageModal: FC<IInfoImageModalProps> = (props) => {
       onCloseModal={onCloseModal}
     >
       <Image type={image} />
+      {subtitle}
       {children}
     </InfoModal>
   );

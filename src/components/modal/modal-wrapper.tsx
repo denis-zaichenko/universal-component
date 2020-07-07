@@ -42,7 +42,7 @@ export const ModalWrapper: FC<IModalWrapperProps> = (props) => {
   return (
     <Modal className={className} isOpen={!isClose}>
       <Wrapper itemGap={itemGap} isNotCenter={isNotCenter}>
-        <CloseTest type="cross" onClick={onCloseModal} />
+        <CloseTest type="closeModal" onClick={onCloseModal} />
         {children}
       </Wrapper>
     </Modal>

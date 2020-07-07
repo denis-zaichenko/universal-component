@@ -8,7 +8,7 @@ export interface ITabPanelProps {
   className?: string;
 }
 
-export const Panel: FC<ITabPanelProps> = (props) => {
+export const TabPanel: FC<ITabPanelProps> = (props) => {
   const { children, className } = props;
 
   const [index, setIndex] = useState<number>(0);
